@@ -10,5 +10,6 @@ bp = Blueprint('chat', __name__)
 
 
 @bp.route('/')
+@login_required
 def sessions():
     return render_template('chat/sessions.html')
