@@ -10,5 +10,5 @@ bp = Blueprint('chat', __name__)
 
 
 @bp.route('/')
-def index():
-    return render_template('chat/index.html')
+def sessions():
+    return render_template('chat/sessions.html')
