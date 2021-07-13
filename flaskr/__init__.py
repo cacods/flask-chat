@@ -30,6 +30,10 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
+    from . import chat
+    app.register_blueprint(chat.bp)
+    app.add_url_rule('/', endpoint='index')
+
     # a simple page that says hello
     @app.route('/hello')
     def hello():
