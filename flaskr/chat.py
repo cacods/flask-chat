@@ -7,3 +7,8 @@ from flaskr.auth import login_required
 from flaskr.db import get_db
 
 bp = Blueprint('chat', __name__)
+
+
+@bp.route('/')
+def index():
+    return render_template('chat/index.html')
