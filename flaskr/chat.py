@@ -1,6 +1,7 @@
 import csv
 import urllib.request
 
+import celery
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
@@ -38,3 +39,8 @@ def get_api_stock(stock):
 
 def message_received(methods=['GET', 'POST']):
     print('message was received!!!')
+
+
+@celery.task
+def test_celery():
+    return 2 + 2

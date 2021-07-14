@@ -1,5 +1,6 @@
 import os
 
+from celery import Celery
 from flask import Flask
 from flask_socketio import SocketIO
 
@@ -12,6 +13,12 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
+
+    app.config['CELERY_BROKER_URL'] = 'amqp://admin:admin@localhost:5672/local_vhost'
+    app.config['CELERY_RESULT_BACKEND'] = 'amqp://admin:admin@localhost:5672/local_vhost'
+    celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
+    celery.conf.update(app.config)
+
     socketio.init_app(app, debug=True)
 
     if test_config is None:
