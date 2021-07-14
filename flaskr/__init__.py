@@ -1,6 +1,9 @@
 import os
 
 from flask import Flask
+from flask_socketio import SocketIO
+
+socketio = SocketIO()
 
 
 def create_app(test_config=None):
@@ -33,5 +36,7 @@ def create_app(test_config=None):
     from . import chat
     app.register_blueprint(chat.bp)
     app.add_url_rule('/', endpoint='sessions')
+
+    socketio.init_app(app, debug=True)
 
     return app
