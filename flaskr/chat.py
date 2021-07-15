@@ -42,10 +42,3 @@ def send_api_stock(stock):
 # TODO: remove
 def message_received(methods=['GET', 'POST']):
     print('message was received!!!')
-
-
-# a simple page that says hello
-@bp.route('/hello')
-def hello():
-    return 'Hello, World!'
-
