@@ -5,8 +5,8 @@ import urllib.request
 import celery
 from flask import Blueprint, render_template
 
-from flaskr import socketio
-from flaskr.auth import login_required
+from chat_app import socketio
+from chat_app.auth import login_required
 
 bp = Blueprint('chat', __name__)
 
