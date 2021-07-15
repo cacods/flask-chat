@@ -3,14 +3,10 @@ import re
 import urllib.request
 
 import celery
-from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
-)
-from werkzeug.exceptions import abort
+from flask import Blueprint, render_template
 
 from flaskr import socketio
 from flaskr.auth import login_required
-from flaskr.db import get_db
 
 bp = Blueprint('chat', __name__)
 
@@ -21,9 +17,9 @@ def sessions():
     return render_template('chat/sessions.html')
 
 
-@socketio.on('my event')
-def handle_my_custom_event(json, methods=['GET', 'POST']):
-    print('received my event: ' + str(json))
+@socketio.on('send message')
+def handle_send_message(json, methods=['GET', 'POST']):
+    print('received message: ' + str(json))
     if 'message' in json.keys() and re.match('/stock=.+$', json['message']):
         send_api_stock_message.delay(json['message'].split('=')[1])
     else:

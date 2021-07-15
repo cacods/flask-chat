@@ -21,7 +21,7 @@
   let messages = 0;
   const socket = io.connect('http://' + document.domain + ':' + location.port);
   socket.on('connect', () => {
-    socket.emit('my event', {
+    socket.emit('send message', {
       data: 'User Connected'
     });
     $('form').on('submit', (e) => {
@@ -29,7 +29,7 @@
       let user_name = '{{ g.user.username }}';
       let user_input = $( 'input.message' ).val();
       if (user_input) {
-        socket.emit('my event', {
+        socket.emit('send message', {
           user_name : user_name,
           message : user_input
         });
