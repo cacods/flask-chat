@@ -5,16 +5,17 @@ A simple demo chat app made with flask and SocketIO
 - SQLite
 - Python 3
 - Virtualenv
-- RabitMQ (see docs dir)
+- RabitMQ (see docs dir for installing and setting up)
 
 
 ## Install
 1. Clone repository and cd into `flask_app` folder
 
 
-2. Create virtual env
+2. Create virtual env and activate it
 ```bash
 $ virtualenv venv -p python3
+$ source venv/bin/activate
 ```
 
 3. Install requirements
