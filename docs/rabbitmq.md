@@ -1,8 +1,5 @@
 # Install and setting up RabbitMQ
 
-See https://techexpert.tips/rabbitmq/rabbitmq-installation-ubuntu-linux.
-
-
 - Install on Debian based systems:
 
 ```bash
@@ -14,4 +11,5 @@ $ sudo rabbitmqctl set_permissions -p local_vhost admin ".*" ".*" ".*"
 $ sudo rabbitmq-plugins enable rabbitmq_management
 ```
 
-After last command, RabbitMQ run web interface on 127.0.0.1:15672
+After last command, RabbitMQ runs a web interface on `127.0.0.1:15672`. The 
+credentials to login are Username: admin, Password: admin. 
