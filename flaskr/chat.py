@@ -47,4 +47,4 @@ def get_quote_from_stooq(stock):
     response = urllib.request.urlopen(api_url)
     rows = [row.decode() for row in response.readlines()]
     content = list(csv.reader(rows))
-    return content[1][6]  # [1][6] is for Close column
+    return content[1][6]  # [1][6] is for Close quote column
