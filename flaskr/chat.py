@@ -39,5 +39,13 @@ def send_api_stock(stock):
     socketio.emit('my response', {'user_name': 'bot', 'message': content[1][6]})
 
 
+# TODO: remove
 def message_received(methods=['GET', 'POST']):
     print('message was received!!!')
+
+
+# a simple page that says hello
+@bp.route('/hello')
+def hello():
+    return 'Hello, World!'
+
