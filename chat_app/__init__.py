@@ -16,7 +16,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        DATABASE=os.path.join(app.instance_path, 'chat_app.sqlite'),
     )
     app.config['CELERY_BROKER_URL'] = BROKER_URI
     app.config['CELERY_RESULT_BACKEND'] = BROKER_URI
