@@ -24,23 +24,20 @@ def sessions():
 def handle_my_custom_event(json, methods=['GET', 'POST']):
     print('received my event: ' + str(json))
     if 'message' in json.keys() and json['message'] == '/stock=aapl.us':
-        json['user_name'] = 'bot'
-        json['message'] = get_api_stock('aapl.us')
-    socketio.emit('my response', json, callback=message_received)
+        send_api_stock.delay('aapl.us')
+    else:
+        socketio.emit('my response', json)
 
 
-def get_api_stock(stock):
+@celery.task
+def send_api_stock(stock):
     api_url = 'https://stooq.com/q/l/?s=' + stock + '&f=sd2t2ohlcv&h&e=csv'
     response = urllib.request.urlopen(api_url)
     rows = [row.decode() for row in response.readlines()]
     content = list(csv.reader(rows))
-    return content[1][6]
+
+    socketio.emit('my response', {'user_name': 'bot', 'message': content[1][6]})
 
 
 def message_received(methods=['GET', 'POST']):
     print('message was received!!!')
-
-
-@celery.task
-def test_celery():
-    return 2 + 2
